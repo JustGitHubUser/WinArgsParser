@@ -59,7 +59,7 @@ namespace WinArgsParser {
         internal CmdParser(IEnumerable<CmdOption<T>> options, IEnumerable<CmdArgument<T>> arguments, string? command = null, char optionPrefix = '/', char[]? optionValueDelimiters = null) {
             this.optionPrefix = optionPrefix;
             this.optionValueDelimiters = optionValueDelimiters ?? DefaultOptionValueDelimiters;
-            this.command = command ?? Path.GetFileNameWithoutExtension(Environment.GetCommandLineArgs()[0]);
+            this.command = command ?? Path.GetFileNameWithoutExtension(Environment.GetCommandLineArgs()[0]) ?? throw new InvalidOperationException("CmdParser");
             this.arguments = arguments;
             this.optionsList = options;
             try {
